@@ -2,6 +2,7 @@
 using namespace std;
 
 int main(){
+    setlocale(LC_ALL, "");
     char letra;
     cout<<"digite uma letra";
     cin>>letra;
