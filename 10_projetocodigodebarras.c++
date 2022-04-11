@@ -11,7 +11,7 @@ int main(){
     cout<<"Digite o valor do codigo de barra:\n";
     cin>>codBarras;
     min=999999999999;
-    max=9999999999999;
+    max=10000000000000;
     codBarras1=codBarras;
     if(codBarras>min && codBarras<max){
     d0 = codBarras1 % 10;
@@ -60,10 +60,10 @@ if(digv%10==0){
 	digv==0;
 };// determinando se a subtração for igual a 10 é substituido por 0
 if(d0==digv){
-	cout<<"codigo correto";
+	cout<<"\ncodigo correto";
 } //verificando se o digito verificador determinado pela serie de calculos é mesmo válido e contatando ao usuário //
 else if(codBarras<min || codBarras>max){
-	cout<< "numero de digitos invalidos";
+	cout<< "\nnumero de digitos invalidos";
 }// contatando o usuário que o número de caracteres do  código de barras solicitado é inválido// 
 else{
 	cout<<"\ncodigo verificador inconsistente";
