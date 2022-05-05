@@ -11,7 +11,7 @@ int main(){
     cout<<"digite um numero";
     cin>>n1;
     for(i=2; i<=n1;i++){
-    -´~    if(i==0 && i==n1 && n1/i==1)(cout<<"esse numero não é primo");
+        if(i==0 && i==n1 && n1/i==1)(cout<<"esse numero não é primo");
     }
     {}
     return 0;
