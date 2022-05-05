@@ -7,6 +7,10 @@ F(n + 2) = F(n + 1) + F(n) , com n ≥ 1 e F(1) = F(2) = 1 .*/
 #include <iostream>
 using namespace std;
 int main(){
+    int n1;
+    cout<<"Qual o tamanho da sequencia fibo";
+    if(n1<2){
+        cout<<"O valor da sequencia e 1";
 
-
+    }
 }
