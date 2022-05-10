@@ -6,11 +6,19 @@ fórmula:
 F(n + 2) = F(n + 1) + F(n) , com n ≥ 1 e F(1) = F(2) = 1 .*/
 #include <iostream>
 using namespace std;
-int main(){
-    int n1;
-    cout<<"Qual o tamanho da sequencia fibo";
-    if(n1<2){
-        cout<<"O valor da sequencia e 1";
-
+int fib (int n)
+{
+    if(n==1||n==2){
+        return 1;
+        return fib(n-1)+ fib(n-2);
     }
+}
+
+int main(){
+    int n1,fb;
+    cout<<"Escolha a posição fibonacci "; 
+    cin>>n1;
+    fb=fib(n1);
+    cout<<"o numero de fibonacci selecionado e:  "<<fb;
+
 }
