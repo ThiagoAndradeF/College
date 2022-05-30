@@ -38,7 +38,7 @@ int main()
     ///ALERTA: NÃO MODIFICAR O TRECHO DE CÓDIGO, ACIMA.
 
 
-    int birdX=5, birdY=10;
+    int birdX=5, birdY=10, birdXL, birdYL;
     int obstaculo1X=129, obstaculo1Y;
     int obstaculo2X=129, obstaculo2Y;
     int tecla;
@@ -54,7 +54,7 @@ int main()
     cout<<"----------------------------------------------------------------------------------------------------------------------------------";
     cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     cout<<"----------------------------------------------------------------------------------------------------------------------------------";
-	cout<<"\n\n                                    Score: "<<score;
+	cout<<"\n\n                                          Score: "<<score;
 
 
 
@@ -62,9 +62,11 @@ int main()
     while (birdFly==true) { //esse laço faz o jogo rodar para sempre
 
         ///POSICIONA O PÁSSARO
-        coord.X = birdX;    coord.Y = birdY;
+        coord.X = birdX;  coord.Y = birdY;
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
         cout<<char(190);
+        birdXL=birdX;
+        birdYL=birdY;
 
         ///POSICIONA O OBSTÁCULO 1 
         obstaculo1Y=1;
@@ -121,10 +123,11 @@ int main()
         }
         
         ///VERIFICA COLISÃO
-        if((birdY<=0)||(birdY>=20)||((birdX==obstaculo1X||birdX==obstaculo2X)&&(birdY<RandCord1-2 ||birdY>RandCord1+2 || birdY<RandCord2-2 ||birdY>RandCord2+2))){
+        if((birdY<=0)||(birdY>=20)||(birdX==obstaculo1X && (birdY>RandCord1 + 2 || birdY>RandCord1-2))||((birdX==obstaculo2X && (birdY>RandCord2 + 2 || birdY>RandCord2-2)))){
         	system("cls");
         	birdFly=false;
-			cout<<"Game Over";
+			cout<<"                                                         Game Over";
+			cout<<"\n\n\n\n\n\n                                                Your pontuation were: " <<score<< "\n\n\n\n";
 		}
         ///VERIFICA COMANDO DO JOGADOR
         if (kbhit()) { ///verifica se uma tecla foi pressionada
