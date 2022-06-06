@@ -4,7 +4,7 @@ using namespace std;
 
 int main(){
     int position[30];
-    for(int i=0; i<31;i++){
+    for(int i=0; i<30;i++){
         position[i]=i;
         if(position[i]%2==0){
            cout<<i<<"  is a multiple of 2 \n";

@@ -3,23 +3,37 @@
 using namespace std;
 
 int main(){
-	int numeroPar=0;
-	int numeroImpar=0;
-	int vetor[30];
-	for(int i=0;i<30;i++){
-        vetor[i]=i;
-		if(vetor[i]%2==0){
-			int vetorPar[numeroPar];
-			numeroPar=numeroPar+1;
+	int vetor[30],vetorP[30],vetorI[30],p=0,im=0,somaI=0,somaP=0;
+	for(int i=0; i<30; i++){
+		vetor[i]=i;
+		
+	 	if(vetor[i]%2 == 0){	
+	 		vetorP[p]=vetor[i];
+	 		somaP+=vetorP[p];
+	 		p++;
 		}
-		if(vetor[i]%2!=0){
-			int vetorPar[numeroPar];
-			numeroImpar=numeroImpar+1;
+		
+		if(vetor[i]%2!=0 && vetor[i]!=0){
+	
+			vetorI[im]=vetor[i];
+			somaI+=vetorI[im];
+			im++;
 		}
-    }
-	for(int i=0;i<numeroPar;i++){
-        
-        cout<<"Valores pares: "<<vetorPar[i]<<", ";
-    }
-	return 0;
-}
+		
+	}
+		cout<<"SOMA DOS PARES  "<<somaP<<"\n\n "; 
+		cout<<"SOMA DOS IMPARES  "<<somaI<<"\n\n"; 
+		cout<<"VETOR PAR:\n";
+		for(int i=0; i<p; i++){
+			cout<<vetorP[i]<<" ";
+		}
+		cout<<"\n VETOR IMPAR:\n";
+		for(int i=0; i<im; i++){
+			cout<<vetorI[i]<< " ";
+		}
+		
+		return 0;	
+	}
+ 
+
+

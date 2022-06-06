@@ -11,5 +11,22 @@ ex: 2 12 3 6 16 15 é uma sequência balanceada, pois 16+2=15+3=12+6 Dados n (n 
 using namespace std;
 
 int main(){
+	int array[10] = {1,2,3,4,5,6,7,8,9,10};
+	int maxiumValue, minimumValue, previusMinimumValue, previusMaximumValue;
+	for (int i = 0; i < 10; i++) {
+		array[i]==rand()%15+1;
+			maxiumValue = array[i];
+		}
+	for (int i = 0; i < 10; i++) {
+		if (i == 0) {
+			maxiumValue = array[i];
+		}
+
+		if (array[i] > maxiumValue) {
+			previusMaximumValue = maxiumValue;
+			maxiumValue = array[i];
+		}
+	}
+
 	return 0;
 }

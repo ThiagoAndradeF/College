@@ -1,4 +1,4 @@
-"Faça um programa que leia uma matriz 4 x 4 e que logo em seguida realize o somatório de todos elementos contidos na diagonal principal. Exiba o resultado."
+/*"Faça um programa que leia uma matriz 4 x 4 e que logo em seguida realize o somatório de todos elementos contidos na diagonal principal. Exiba o resultado."*/
 #include <iostream>
 #include <time.h>
 using namespace std;

@@ -1,4 +1,4 @@
-"Elabore um programa que preencha uma matriz (utilizando sorteia) 5 x 5, e logo após identifique o maior elemento da matriz. Exiba o resultado."
+/*"Elabore um programa que preencha uma matriz (utilizando sorteia) 5 x 5, e logo após identifique o maior elemento da matriz. Exiba o resultado."*/
 #include <iostream>
 #include <time.h>
 using namespace std;

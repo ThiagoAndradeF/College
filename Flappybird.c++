@@ -1,9 +1,8 @@
 /*Versão beta desenvolvida por Thiago Felski Pereira para disciplina de Algoritmos*/
 #include <iostream>
 #include <windows.h>
-#include <conio.h>
-#include <time.h>
- ///para o getch()
+#include <conio.h> ///para o getch()
+#include <time.h> ///para habilitar a função time
 ///https://stackoverflow.com/questions/34474627/linux-equivalent-for-conio-h-getch
 
 using namespace std;
@@ -38,129 +37,139 @@ int main()
     ///ALERTA: NÃO MODIFICAR O TRECHO DE CÓDIGO, ACIMA.
 
 
-    int birdX=5, birdY=10, birdXL, birdYL;
-    int obstaculo1X=129, obstaculo1Y;
-    int obstaculo2X=129, obstaculo2Y;
-    int tecla;
-    bool birdFly=true;
-    int RandCord1=rand()%15+3;
-    int RandCord2=rand()%15+3;
-    int score=0;
-    int scorePositionX,scorePositionY;
-    int gameOverPositionX, gameOverPositionY;
-    int speed=150;
+    int bird_x=10, bird_y=10;
+    int obstaculo_x=130, obstaculo_y;
+    int obstaculo2_x=130, obstaculo2_y;
+    int num1= 0, num2=0, num3=0, num4=0;
+    char tecla = '0';
+    
+    srand(time(NULL));
+    
+    int pontos=0, tempo=100;  //DECLARAÇÃO DE VARIÁVEIS ADICIONAIS
+    system("pause");
+    
+	 ///DESENHO DO CENÁRIO
+        cout<<"---------------------------------------------PONTUACAO: "<<pontos<<"---------------------------------------------------------------";
+        cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout<<"------------------------------------------------------------------------------------------------------------------------";
 
-    ///DESENHO DO CENÁRIO
-    cout<<"----------------------------------------------------------------------------------------------------------------------------------";
-    cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-    cout<<"----------------------------------------------------------------------------------------------------------------------------------";
-	cout<<"\n\n                                          Score: "<<score;
+	while (true) { //esse laço faz o jogo rodar para sempre
+        //system("cls");
+///POSICIONA O PÁSSARO
+        //coord.X = 10;    coord.Y = 10;
+        //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+        //cout<<pontos;
+        
+       
+        if(obstaculo_x ==130){
+            ///GERANDO NÚMERO ALEATÓRIO
+            srand(time(NULL));
+            num1 = rand()%14;
+            if(num1==0){
+                num1=1;
+            }
+            num2 = num1+5; //DEFINE O ESPAÇO ENTRE OBSTÁCULOS
+        }
 
-
-
-
-    while (birdFly==true) { //esse laço faz o jogo rodar para sempre
-
-        ///POSICIONA O PÁSSARO
-        coord.X = birdX;  coord.Y = birdY;
-        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-        cout<<char(190);
-        birdXL=birdX;
-        birdYL=birdY;
-
-        ///POSICIONA O OBSTÁCULO 1 
-        obstaculo1Y=1;
-        while(obstaculo1Y<20){
-            coord.X = obstaculo1X;    coord.Y = obstaculo1Y;
+        ///POSICIONA O OBSTÁCULO
+        obstaculo_y=1;
+        while(obstaculo_y<21){
+            coord.X = obstaculo_x;    coord.Y = obstaculo_y;
             SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-            if(obstaculo1Y<RandCord1-2 || obstaculo1Y>RandCord1+2){
+            if(obstaculo_y<=num1 || obstaculo_y>=num2){
                 cout<<char(219);
             } else {
                 cout<<" ";
             }
-            obstaculo1Y++;
-            //movimentar o obstaculo criado
-            coord.X = obstaculo1X + 1;
-            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-            cout<<" ";
+            obstaculo_y++;
         }
-        ///Se coordenada x do obstaculo 1 tiver passado à pouco do bird, ele será excluido
-        if(obstaculo1X<2 ){
-        obstaculo1Y=1;
-        while(obstaculo1Y<20){
-            coord.X = obstaculo1X;    coord.Y = obstaculo1Y;
-            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-            cout<<" ";
-            obstaculo1Y++;}   
-        }
-        ///POSICIONA O OBSTÁCULO 2
-        if(obstaculo1X==65){
-        obstaculo2Y=1;
-        while(obstaculo2Y<20){
-            coord.X = obstaculo2X;    coord.Y = obstaculo2Y;
-            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-            if(obstaculo2Y<RandCord2-2 || obstaculo2Y>RandCord2+2){
-                cout<<char(219);
-            } else{
-                cout<<" ";
-            }
-            obstaculo2Y++;
-            //movimentar o obstaculo criado
-            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-            coord.X = obstaculo2X+ 1;
-            cout<<"";
-        }
-    }
-        ///Se coordenada x do obstaculo 2 tiver passado à pouco do bird, ele será excluido
-        if(obstaculo2X<2){
-        obstaculo2Y=1;
-        while(obstaculo2Y<20){
-            coord.X = obstaculo2X;    coord.Y = obstaculo2Y;
-            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-            cout<<" ";
-            obstaculo2Y++;
-			}   
-        }
-        
+
+        ///POSICIONA O PÁSSARO
+        coord.X = bird_x;    coord.Y = bird_y;
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+        cout<<char(190);
+
         ///VERIFICA COLISÃO
-        if((birdY<=0)||(birdY>=20)||(birdX==obstaculo1X && (birdY>RandCord1 + 2 || birdY>RandCord1-2))||((birdX==obstaculo2X && (birdY>RandCord2 + 2 || birdY>RandCord2-2)))){
+        if(bird_y == 0 || bird_y >= 20 ||(obstaculo_x==10 && (num1>=bird_y || num2<=bird_y)) || (obstaculo2_x==10 && (num3>=bird_y || num4<=bird_y))){
         	system("cls");
-        	birdFly=false;
-			cout<<"                                                         Game Over";
-			cout<<"\n\n\n\n\n\n                                                Your pontuation were: " <<score<< "\n\n\n\n";
-		}
+            cout << endl << "Voce acertou um obstaculo. GAME OVER"<< endl;
+            cout<< "Pontuacao final: "<<pontos<<endl; //JOGO PARA CASO O PASSARO COLIDA NO OBSTÁCULO
+            return 1;
+        }
+
+        if(obstaculo_x < bird_x){
+            pontos+=1; //PONTUAÇÃO
+            obstaculo_x = 130;
+        }else if(obstaculo2_x < bird_x){
+            pontos+=1;
+            if((pontos%5==0) && pontos != 0){
+            tempo -= 20; //A CADA 5 PONTOS ELE AUMENTA A VELOCIDADE DO JOGO
+        } 
+        }
+
+
+        if(obstaculo_x == 67){
+            ///GERANDO NÚMERO ALEATÓRIO
+            //srand(time(NULL));
+            num3 = rand()%15+1;
+            num4 = num3+5; //DEFINE O ESPAÇO ENTRE OBSTÁCULOS
+            obstaculo2_x=130;
+        }
+
+        if(obstaculo_x<60 || pontos>=1){
+            obstaculo2_y=1;
+            while(obstaculo2_y<21){
+                coord.X = obstaculo2_x;    coord.Y = obstaculo2_y;
+                SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+                if(obstaculo2_y<=num3 || obstaculo2_y>=num4){
+                    cout<<char(219);
+                } else {
+                    cout<<" ";
+                }
+                obstaculo2_y++;
+            }
+        }
+
+        Sleep(tempo);
+        
+        ///limpar passaro
+        ///POSICIONA O PÁSSARO
+        coord.X = bird_x;    coord.Y = bird_y;
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+        cout<<" ";
+
+		obstaculo_y=1;
+		while(obstaculo_y<21){
+            coord.X = obstaculo_x;    coord.Y = obstaculo_y;
+            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+                cout<<" ";
+        
+            obstaculo_y++;
+        }
+        obstaculo2_y=1;
+        while(obstaculo2_y<21){
+                coord.X = obstaculo2_x;    coord.Y = obstaculo2_y;
+                SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+				cout<<" ";
+                
+                obstaculo2_y++;
+            }
+
         ///VERIFICA COMANDO DO JOGADOR
         if (kbhit()) { ///verifica se uma tecla foi pressionada
             tecla=getch(); //verifica comando do jogador
         }
-        //Subir placar
-        if(birdX==obstaculo1X+1 || birdX==obstaculo2X+1 ){
-        	score++;
-		}
-		//Aumentar velocidade
-		if(score>1 && score%5==0 && score<30){
-			speed-=20;
-		}
-        ///PÁSSARO CAI 1 POSIÇÃO SE NÃO FOI PRESSIONADO PARA SUBIR
-        if ( tecla=='w' || tecla=='W' ){
-            birdY--;
+
+        if ( tecla=='w' || tecla =='W'){
+            bird_y--;
             tecla='0';
         } else {
-            birdY++;
+            bird_y++;   //PÁSSARO CAI 1 POSIÇÃO SE NÃO FOI PRESSIONADO PARA SUBIR
         }
-        ///OBSTÁCULOS AVANÇAM UMA POSIÇÃO PARA ESQUERDA
-        obstaculo1X--;
-        if(obstaculo1X<65){
-        obstaculo2X--;}
-        
-        ///Se posição do obstáculo 1 é menor que zero no cenário
-        if(obstaculo1X<0){
-        	while(obstaculo1Y<20){
-        		coord.X=obstaculo1X; 
-			}
-		}
-        Sleep(speed);
-    }
 
+        ///OBSTÁCULO AVANÇA CINCO POSIÇÕES PARA ESQUERDA
+        obstaculo_x-=3;
+        obstaculo2_x-=3;
+    }
     return 0;
 }
