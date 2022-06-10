@@ -1,3 +1,5 @@
+
+
 /*"Faça um programa que preencha, utilizando sorteia, uma matriz 5x5. A seguir, crie dois vetores e coloque, em um, a soma das linhas da matriz, e no outro a soma das colunas da matriz. Exiba o resultado."*/
 #include <iostream>
 using namespace std;
@@ -7,7 +9,7 @@ int somaColuna[5],somarColuna;
 int Matriz[5][5];
 int main(){
     for(int i=0; i<5;i++){
-		somarColuna=0;
+		somarLinha=0;
         for(int j=0; j<5;j++){
             Matriz[i][j]=i;
             somarLinha+=Matriz[i][j];
