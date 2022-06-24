@@ -12,15 +12,16 @@ int main(){
 		somarLinha=0;
         for(int j=0; j<5;j++){
             Matriz[i][j]=i;
-            somarLinha+=Matriz[i][j];
-			if(i==j){
-			somaColuna[i]+=Matriz[i][j];
-			}	
-        cout<<somaLinha[i]<<"  "; 
-		somaLinha[i]=somarLinha;
-		} 
-		
+            somarLinha+=Matriz[i][j];}
+			somaLinha[i]=somarLinha;		
+	}
+	for(int j=0;j<5;j++){
+		somarColuna=0;
+		for(int i=0;i<5;i++){
+			somarColuna+=Matriz[i][j];}
+			somaColuna[j]=somarColuna;
 		}
+
     for(int i=0;i<5;i++){
         for(int j=0;j<5;j++){
         cout<<Matriz[i][j]<<" ";
@@ -29,6 +30,8 @@ int main(){
     }
     for (int i=0;i<5;i++){
         cout<<"O valor do samotorio da LINHA "<<i<<" e igual a "<<somaLinha[i]<<"\n";
+    }for (int i=0;i<5;i++){
+        cout<<"O valor do samotorio da COLUNA "<<i<<" e igual a "<<somaColuna[i]<<"\n";
     }
     return 0; 
 }
