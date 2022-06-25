@@ -2,78 +2,63 @@
 #include <time.h>
 using namespace std;
 
-int matrizPrincipal[5][5];
-int matrizGabarito[5][5];
-int matrizTransposta[5][5];
-int matrizLinhaInvertida[5][5];
-int vetorLinhaInvertida[25];
+int matrizPrincipal[4][4];
+int matrizGabarito[4][4];
+int matrizTransposta[4][4];
+int matrizLinhaInvertida[4][4];
+int matrizColunaInvertida[4][4];
 int numE= rand()%3;
+int numSorteado;
 int main(){ 
 srand(time(NULL));
-
-    for(int i=0;i<5;i++){
-        for(int j=0; j<5;j++){
-            matrizPrincipal[i][j]=i;
-            matrizGabarito[i][j]=matrizPrincipal[i][j];
-        }
+///Preencher Matriz Principal
+for(int i=0;i<4;i++){
+    for(int j=0; j<4;j++){
+    	numSorteado= rand()%10;
+        matrizPrincipal[i][j]=numSorteado; 
+        matrizGabarito[i][j]=matrizPrincipal[i][j];
     }
-    for(int i=0;i<5;i++){
-        for(int j=0; j<5;j++){
-            cout<<matrizPrincipal[i][j]<<" ";
-            matrizTransposta[i][j]=matrizPrincipal[j][i];
-        }
-        cout<<"\n";
-    }   
-    for(int i=5;i<1;i--){
-                for(int j=5; j<1;j--){
-                	for(int k=0;k<25;k++){
-					vetorLinhaInvertida[k]=matrizPrincipal[i][j];
-					}
-                }
-        	}
-            for(int i=0;i<5;i++){
-                for(int j=0; j<5;j++){
-                	for(int k=0;k<25;k++)
-               		matrizLinhaInvertida[i][j]=vetorLinhaInvertida[k];
-                }
-            }  
-        	for(int i=0;i<5;i++){
-        		for(int j=0; j<5;j++){
-            	cout<<matrizLinhaInvertida[i][j]<<" ";
-      			  }
-       		 cout<<"\n";
-    		}
-    switch(numE){
-        case 0://Transposta
-            for(int i=0;i<5;i++){
-                for(int j=0; j<5;j++){
-                matrizTransposta[i][j]=matrizPrincipal[j][i];
-                }
-            }  
-            break;
-        case 1://Invertida por linha
-            for(int i=5;i<1;i--){
-                for(int j=5; j<1;j--){
-                	for(int k=0;k<25;k++){
-					vetorLinhaInvertida[k]=matrizPrincipal[i][j];
-					}
-                }
-        	}
-            for(int i=0;i<5;i++){
-                for(int j=0; j<5;j++){
-                	for(int k=0;k<25;k++)
-               		matrizLinhaInvertida[i][j]=vetorLinhaInvertida[k];
-                }
-            }  
-        	for(int i=0;i<5;i++){
-        		for(int j=0; j<5;j++){
-            	cout<<matrizLinhaInvertida[i][j]<<" ";
-      			  }
-       		 cout<<"\n";
-    		}    
-            break;
-        case 2://Invertida por coluna
-            break;
-    } 
-
 }
+ ///Escrever Matriz Principal
+for(int i=0;i<4;i++){
+    for(int j=0; j<4;j++){
+        cout<<matrizPrincipal[i][j]<<" ";
+        matrizTransposta[i][j]=matrizPrincipal[j][i];//criar matriz transposta
+        matrizLinhaInvertida[3-i][j]=matrizPrincipal[i][j];//criar matriz linhainvertida
+        matrizColunaInvertida[i][3-j]=matrizPrincipal[i][j];//criar matriz colunainvertida
+    }
+    cout<<"\n";
+}   
+switch(numE){//sortear o tipo de embaralhamento
+    case 0:
+    	for(int i=0;i<4;i++){
+        	for(int j=0; j<4;j++){
+           	matrizPrincipal[i][j]= matrizLinhaInvertida[i][j];	
+            }
+        }	
+    break;
+    case 1:
+    	for(int i=0;i<4;i++){
+        	for(int j=0; j<4;j++){
+           	matrizPrincipal[i][j]= matrizColunaInvertida[i][j];	
+            };
+        }
+    break;
+    case 2:
+    	for(int i=0;i<4;i++){
+        	for(int j=0; j<4;j++){
+           	matrizPrincipal[i][j]= matrizTransposta[i][j];	
+            }
+         };
+	break;	
+}
+cout<<"\n\n";
+	for(int i=0;i<4;i++){//Escrever nova matriz embaralhada
+        for(int j=0; j<4;j++){
+            cout<<matrizColunaInvertida[i][j]<<" ";
+        }
+    cout<<"\n";
+    };
+}
+
+	
