@@ -1,7 +1,7 @@
 #include <iostream>
 #include <time.h>
 using namespace std;
-
+int matrizMeia[2][2];
 int matrizPrincipal[4][4];
 int matrizGabarito[4][4];
 int matrizTransposta[4][4];
@@ -11,6 +11,8 @@ int numE= rand()%3;
 int numSorteado;
 int main(){ 
 srand(time(NULL));
+for(int i=0;i<4;i++){//Preencher Matriz Meia
+    for(int j=0; j<4;j++){
 ///Preencher Matriz Principal
 for(int i=0;i<4;i++){
     for(int j=0; j<4;j++){
