@@ -8,10 +8,13 @@ int matrizGabarito[4][4];
 int matrizTransposta[4][4];
 int matrizLinhaInvertida[4][4];
 int matrizColunaInvertida[4][4];
+int matrizJogo[4][4];
 int numE= rand()%3;
 int numSorteado;
 int k=0;
-int main(){ 
+bool jogando=true;
+int main(){
+if(jogando){
 srand(time(NULL));
 //Preencher VetorMeia
 for(int i=0;i<8;i++){
@@ -35,22 +38,20 @@ for(int i=0; i<16;i++){
 ///Preencher Matriz Principal
 for(int i=0;i<4;i++){
     for(int j=0; j<4;j++){
-    	while(vetorInteira[k]!=matrizPrincipal[i][j]){
-    		vetorInteira[k]=matrizPrincipal[i][j];
+    	while(matrizPrincipal[i][j]!=vetorInteira[k]){
+    		matrizPrincipal[i][j]=vetorInteira[k];
 		}
     	k++;
         matrizGabarito[i][j]=matrizPrincipal[i][j];
         }
     }
- ///Escrever Matriz Principal
+///criação dos embaralhamentos
 for(int i=0;i<4;i++){
     for(int j=0; j<4;j++){
-        cout<<matrizPrincipal[i][j]<<" ";
         matrizTransposta[i][j]=matrizPrincipal[j][i];//criar matriz transposta
         matrizLinhaInvertida[3-i][j]=matrizPrincipal[i][j];//criar matriz linhainvertida
         matrizColunaInvertida[i][3-j]=matrizPrincipal[i][j];//criar matriz colunainvertida
     }
-    cout<<"\n";
 }   
 switch(numE){//sortear o tipo de embaralhamento
     case 0:
@@ -84,4 +85,15 @@ cout<<"\n\n";
     };
 }
 
-	
+//Criando Matriz Jogo 
+for(int i=0;i<4;i++){
+        for(int j=0; j<4;j++){
+           	matrizJogo[i][j]=matrizPrincipal[i][j];	
+        }
+};
+cout<<"Informe "
+
+if(jogadas>24){
+    return 
+}
+}
