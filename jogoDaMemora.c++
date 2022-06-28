@@ -1,7 +1,8 @@
 #include <iostream>
 #include <time.h>
 using namespace std;
-int matrizMeia[2][2];
+int vetorMeia[8];
+int vetorInteira[16];
 int matrizPrincipal[4][4];
 int matrizGabarito[4][4];
 int matrizTransposta[4][4];
@@ -9,18 +10,38 @@ int matrizLinhaInvertida[4][4];
 int matrizColunaInvertida[4][4];
 int numE= rand()%3;
 int numSorteado;
+int k=0;
 int main(){ 
 srand(time(NULL));
-for(int i=0;i<4;i++){//Preencher Matriz Meia
-    for(int j=0; j<4;j++){
+//Preencher VetorMeia
+for(int i=0;i<8;i++){
+    vetorMeia[i]=rand()%8;
+    for(int j=0;j<i;j++){
+        if(vetorMeia[j]==vetorMeia[i]){
+        i--;
+        }
+    }
+}
+cout<<"\n\n";
+//Preencher VetorInteira com (2 meia)
+for(int i=0; i<16;i++){
+   if(i<8){
+    vetorInteira[i]=vetorMeia[i];
+   } 
+   if(i>=8){
+    vetorInteira[i]=vetorMeia[i-8];
+   }
+}
 ///Preencher Matriz Principal
 for(int i=0;i<4;i++){
     for(int j=0; j<4;j++){
-    	numSorteado= rand()%10;
-        matrizPrincipal[i][j]=numSorteado; 
+    	while(vetorInteira[k]!=matrizPrincipal[i][j]){
+    		vetorInteira[k]=matrizPrincipal[i][j];
+		}
+    	k++;
         matrizGabarito[i][j]=matrizPrincipal[i][j];
+        }
     }
-}
  ///Escrever Matriz Principal
 for(int i=0;i<4;i++){
     for(int j=0; j<4;j++){
