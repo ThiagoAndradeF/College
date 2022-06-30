@@ -3,9 +3,6 @@
 #include <conio.h>
 #include <time.h>
 using namespace std;
-
-int main()
-{
 int vetorMeia[8];
 int vetorInteira[16];
 int matrizPrincipal[4][4];
@@ -16,7 +13,7 @@ int matrizColunaInvertida[4][4];
 int matrizJogo[4][4];
 char matrizVazia[4][4];
 char matrizVaziaCopia[4][4];
-int numE = rand() % 4;
+int numE = 3;// rand() % 4;
 int numSorteado;
 int jogadas = 0;
 bool jogando = true;
@@ -24,15 +21,17 @@ int k = 0;
 int x1, y1, x2, y2;
 int tecla;
 int duplasAcertadas=0;
+int main()
+{
     srand(time(NULL));
     // Preencher VetorMeia
     for (int i = 0; i < 8; i++)
     {
-        vetorMeia[i] = rand()%8;
-        if(vetorMeia[i]==7){
+        vetorMeia[i] = rand()%7+1;
+        if(vetorMeia[i]==6){
             vetorMeia[i]=11;
         }
-        if(vetorMeia[i]==0){
+        if(vetorMeia[i]==6){
             vetorMeia[i]=12;
         }
         for (int j = 0; j < i; j++)
@@ -146,7 +145,7 @@ int duplasAcertadas=0;
             cout<< "Numero de duplas formadas: "<<duplasAcertadas<<"\n"<<"Falta so achar: "<<(8-duplasAcertadas)<<"\n\n";
             cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida \n"<<"Para: x  y \n";
             cin>> x1 >> y1;
-            cout << "Informe a segunda posicao(de 1 a 4) da peca escolhida \n"<<"Para: x  y \n";
+            cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida \n"<<"Para: x  y \n";
             cin >> x2 >>y2;
             if((x1<1 || x1>4) || (y1<1 || y1>4) || (x2<1 || x2>4) || (y2<1 || y2>4) || ((x1==x2)&&(y1==y2))){
             	cout<<"Jogada invalida\n";
@@ -173,46 +172,20 @@ int duplasAcertadas=0;
                 };
                 system("pause");
         	}
+
+
 			if(duplasAcertadas==8){
-				system("cls");
-			cout << "########         #####	     #####      #####        ########  ########  ##     ##  ########"<< endl;
-            cout << "#               #     #     #     #    #     #       #         #      #  # #   # #  #       "<< endl;
-            cout << "#              #       #   #       #   #      #      #         #      #  #  # #  #  #       "<< endl;
-            cout << "#  #####       #       #   #       #   #       #     #  #####  ########  #   #   #  ########"<< endl;
-            cout << "#      #       #       #   #       #   #      #      #      #  #      #  #       #  #       " << endl;
-            cout << "#      #        #     #     #     #    #     #       #      #  #      #  #       #  #       "<< endl;
-            cout << "########         #####       #####      #####        ########  #      #  #       #  ########"<< endl;
-            cout << "\n\n                                     Voce ganhou em: " << jogadas << " jogadas";
-            cout << "\n                                  Pressione [ESPACO] para reiniciar";
-            cout << "\n                                  Pressione [ENTER] 2 vezes para sair\n";
-            system("pause");
-            while (true)
-            {
-                if (kbhit())
-                {                    /// verifica se uma tecla foi pressionada
-                    tecla = getch(); // verifica comando do jogador
-                }
-
-                if (tecla == ' ')
-                {
-                    main(); /// Reinicia o Jogo
-                    break;
-                }
-                if (tecla == 13)
-                {
-
-                    return 0; /// Fecha o jogo
-                    break;
-                }
-            }
-			system("Pause");
+				cout<<"\nParabens, você ganhou\n";
 			}
 			jogadas++; // aumentar jogadas
             system("cls");
         }
         else
-        {          
+        {
+            return jogando == false;
             system("cls");
+            continue;
+            system("color 74");
             cout << " " << endl;
             cout << "                  ########  ########  ##     ##  ########        #####   #           #  ########  ######" << endl;
             cout << "                  #         #      #  # #   # #  #              #     #   #         #   #         #     #" << endl;
@@ -221,9 +194,9 @@ int duplasAcertadas=0;
             cout << "                  #      #  #      #  #       #  #             #       #     #   #      #         #  #" << endl;
             cout << "                  #      #  #      #  #       #  #              #     #       # #       #         #   #" << endl;
             cout << "                  ########  #      #  #       #  ########        #####         #        ########  #    #" << endl;
-            cout << "\n\n ";                                           
+            cout << "\n\n                                                  Você acertou em: " << jogadas << "jogadas";
             cout << "\n                                             Pressione [ESPACO] para reiniciar";
-            cout << "\n                                             Pressione [ENTER] 2 vezes para sair\n";
+            cout << "\n                                             Pressione [ENTER] 2 vezes para sair";
             system("pause");
             while (true)
             {
@@ -235,7 +208,6 @@ int duplasAcertadas=0;
                 if (tecla == ' ')
                 {
                     main(); /// Reinicia o Jogo
-                    return jogando =true;
                     break;
                 }
                 if (tecla == 13)
