@@ -12,6 +12,7 @@ int matrizLinhaInvertida[4][4];
 int matrizColunaInvertida[4][4];
 int matrizJogo[4][4];
 char matrizVazia[4][4];
+char matrizVaziaCopia[4][4];
 int numE = rand() % 3;
 int numSorteado;
 int jogadas = 0;
@@ -69,6 +70,7 @@ int main()
             matrizLinhaInvertida[3 - i][j] = matrizPrincipal[i][j];  // criar matriz linhainvertida
             matrizColunaInvertida[i][3 - j] = matrizPrincipal[i][j]; // criar matriz colunainvertida
             matrizVazia[i][j]= char(220);
+            matrizVaziaCopia[i][j]=matrizVazia[i][j];
         }
     }
     switch (numE)
@@ -101,15 +103,6 @@ int main()
         };
         break;
     }
-           cout << "\n\n";
-           for (int i = 0; i < 4; i++)
-           { // Escrever nova matriz embaralhada
-               for (int j = 0; j < 4; j++)
-               {
-                   cout << matrizVazia[i][j] << " ";
-               }
-               cout << "\n";
-           };
 
     // Criando Matriz Jogo
     for (int i = 0; i < 4; i++)
@@ -120,25 +113,53 @@ int main()
         }
     };
     //
-    while (jogando == true)
-    {
+    while (jogando == true){
+        for (int i = 0; i < 4; i++)
+        {
+        for (int j = 0; j < 4; j++)
+        {
+            matrizVaziaCopia[i][j] = matrizVazia[i][j];
+        }
+        };
+        cout << "\n\n";
+        for (int i = 0; i < 4; i++)
+        { // Escrever nova matriz embaralhada
+            for (int j = 0; j < 4; j++)
+            {
+               cout << matrizVazia[i][j] << " ";
+            }
+           cout << "\n";
+        };
+    
         
-        if (jogadas <= 24)
+        if (jogadas <= 24)//jogo rodando
         {
             cout << "Jogadas Restantes " << (24 - jogadas) << "\n"; // mostrar numero de jogadas
             cout<< "Numero de duplas formadas: "<<duplasAcertadas<<"\n"<<"Falta so achar: "<<(8-duplasAcertadas)<<"\n\n";
             // pedir dados de comparação
-            cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida \n"<<"Para: x (horizontal- esquerda para direita)\n";
-            cin >> x1;
-            cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida  \n"<<"Para: y (vertical- cima para baixo)\n";
-            cin >> y1;
-            cout << "Informe a posicao(de 1 a 4) da peca correspondente \n"<< "Para: x (horizontal- esquerda para direita)\n";
-            cin >> x2;
-            cout << "Informe a primeira posicao(1 a 4) da peca correspondente \n"<< "Para: y(vertical- cima para baixo)\n";
-            cin >> y2; 
+            cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida \n"<<"Para: x  y \n";
+            cin >> x1 >>y1;
+            cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida \n"<<"Para: x  y \n";
+            cin >> x2 >>y2;
+            
             if(matrizJogo[x1-1][y1-1]==matrizJogo[x2-1][y2-1]){
             	duplasAcertadas++;
-			}
+                matrizVazia[x1-1][y1-1]=matrizJogo[x1-1][y1-1];
+                matrizVazia[x2-1][y2-1]=matrizJogo[x2-1][y2-1];
+                }else{
+                matrizVaziaCopia[x1-1][y1-1]=matrizJogo[x1-1][y1-1];
+                matrizVaziaCopia[x2-1][y2-1]=matrizJogo[x2-1][y2-1];
+                for (int i = 0; i < 4; i++)
+                    { // Escrever nova matriz embaralhada
+                for (int j = 0; j < 4; j++)
+                    {
+                        cout << matrizVaziaCopia[i][j] << " ";
+                    }
+                    cout << "\n";
+                };
+                system("pause");
+                }
+
 			if(duplasAcertadas==8){
 				cout<<"\nParabens, você ganhou\n";
 			}
