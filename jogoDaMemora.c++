@@ -3,7 +3,6 @@
 #include <conio.h>
 #include <time.h>
 using namespace std;
-
 int main()
 {
 int vetorMeia[8];
@@ -142,6 +141,7 @@ int duplasAcertadas=0;
             }
            cout << "\n";
         	};
+            //PLACAR
         	cout << "Jogadas Restantes " << (24 - jogadas) << "\n"; // mostrar numero de jogadas
             cout<< "Numero de duplas formadas: "<<duplasAcertadas<<"\n"<<"Falta so achar: "<<(8-duplasAcertadas)<<"\n\n";
             cout << "Informe a primeira posicao(de 1 a 4) da peca escolhida \n"<<"Para: x  y \n";
@@ -151,11 +151,7 @@ int duplasAcertadas=0;
             if((x1<1 || x1>4) || (y1<1 || y1>4) || (x2<1 || x2>4) || (y2<1 || y2>4) || ((x1==x2)&&(y1==y2))){
             	cout<<"Jogada invalida\n";
             	system("pause");
-			}
-			
-			}while((x1<1 || x1>4) || (y1<1 || y1>4) || (x2<1 || x2>4) || (y2<1 || y2>4) || ((x1==x2)&&(y1==y2)));	
-//            cout<<"x1: "<<x1<<"\ny1: "<<y1<<"\nx2: "<<x2<<"\ny2: "<<y2;
-//            system("pause");
+			}}while((x1<1 || x1>4) || (y1<1 || y1>4) || (x2<1 || x2>4) || (y2<1 || y2>4) || ((x1==x2)&&(y1==y2)));	
             if(matrizJogo[x1-1][y1-1]==matrizJogo[x2-1][y2-1]){
             	duplasAcertadas++;
                 matrizVazia[x1-1][y1-1]=matrizJogo[x1-1][y1-1];
