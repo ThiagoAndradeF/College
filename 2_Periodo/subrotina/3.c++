@@ -2,6 +2,14 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-
+int MDC(int n1, int n2){
+    while(n2!=n1){
+    if (n1<n2){
+        n2=n2-n1;
+    }else{
+        n1=n1-n2;}
+    }return n1;}
 int main()
-{}
+{
+    cout<<MDC(12, 20);
+}

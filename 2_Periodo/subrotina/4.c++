@@ -2,6 +2,9 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-
-int main()
-{}
+int remainderOfWholeDivision(int num1, int num2){
+    return num1 % num2;
+}
+int main(){
+    cout << remainderOfWholeDivision(20,10);
+}

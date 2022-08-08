@@ -3,11 +3,17 @@
 #include <math.h>
 using namespace std;
 
-
-
+int positiveOrNegative(int number){
+    if(number>0){
+        return (1);
+    }else{
+        return (0);
+    }
+}
 
 
 int main()
 {
-
+    cout<<positiveOrNegative(29);
+    return 0;
 }
