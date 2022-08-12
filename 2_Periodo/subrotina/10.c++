@@ -4,24 +4,23 @@
 using namespace std;
 int factorial(int n){
     int nFactorial=1;
-    for(int i=0; i<n; i++){nFactorial*=i;}
+    for(int i=1; i<=n; i++){nFactorial*=i;}
     return nFactorial;
 }
+
+
 int combinationFunction(int n, int k)
 {
     if(n<0 || k<0) return false;
     else{
-        int nFactorial=1, kFactorial=1;
-        for(int i=n; i>0; i--){nFactorial*=i;}
-        for(int i=k; i>0; i--){kFactorial*=i;}
+        int nFactorial=factorial(n), kFactorial=factorial(k);
+        int combination=nFactorial/(kFactorial*factorial(n-k));
+        return combination;
     }
 }
 
 
-
-
-
 int main()
 {
-
+	cout<<combinationFunction(6,2);
 }

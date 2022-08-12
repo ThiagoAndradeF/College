@@ -2,6 +2,19 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-
+void multiplyElementByMainDiagonal(int headquarters[6][6]){
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            headquarters[i][j]= headquarters[i][j]*headquarters[i][i];
+        }
+    }
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            cout<< headquarters[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+}
 int main()
-{}
+{
+}
