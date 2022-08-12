@@ -2,6 +2,15 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-
+bool checkFriendNumbers(int number1=0, int number2=0){   
+    for(int j = 0; j < number1 && number2; j++){
+        if(number1%j==0 && number2%j!=0){
+            return false;
+        }
+    }
+    return true;
+}
 int main()
-{}
+{
+    cout<< checkFriendNumbers(20,30);
+}
