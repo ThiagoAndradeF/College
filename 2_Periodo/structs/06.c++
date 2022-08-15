@@ -1,0 +1,7 @@
+// Elabore um programa que auxilie no controle de uma fazenda de gado que possuí um total de 2000 cabeças de gado. A  base de dados é  formada  por um  conjunto de estruturas (registros) contendo os seguintes campos referente a cada cabeça de gado:código: código da cabeça de gado;leite: número de litros de leite produzido por semana;alim: quantidade de alimento ingerida por semana -em quilos;nasc: data de nascimento -mês e ano; eabate: ‘N’(não) ou ‘S’ (sim).O campo nasc. é do tipo struct data que por sua vez, possui dois campos:mêsanoElaborar funções para:a)Ler a base de dados (código, leite, alim, nasc.mês e nasc.ano), armazenado em um vetor de estruturas.b) Preencher o campo abate, considerando que a cabeça de gado irá para o abate caso:tenha mais de 5 anos, ou;produza menos de 40 litros de leite por semana, ou;produza até 70 litros de leite por semana e ingira mais de 50 quilos de alimento por dia.Crie o menu de opções para:a)Exibira quantidade total de leite produzida por semana na fazenda;b)Exibira quantidade total de alimento consumido por semana na fazenda; c)Exibira quantidade total de leite que vai ser produzido por semana na fazenda, após o abate;d)Exibira quantidade total de alimento que vai ser consumido por semana na fazenda, após o abate;e)Exibir onúmero de cabeças de gado que irãopara o abate; ef)Sair do programa.
+#include <iostream>
+using namespace std;
+
+int main(){
+    
+}
