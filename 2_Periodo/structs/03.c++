@@ -2,10 +2,11 @@
 // O programa deve:Verificar se a data de nascimento geradaé válida (utilize o algoritmo desenvolvido na exercício número 2);listartodos os nomes e respectivas idades; elistar os nomes das pessoas mais velhas do que uma certa  idade (deve ser validada também esta data) fornecida pelo usuário.
 // Devem ser criadas funções diferentes para cada uma dessas atividades.
 #include <iostream>
+#include <time.h>
+#include <stdlib.h>
 using namespace std;
 struct date{
-    int m, y, d;
-};
+    int m, y, d;};
 struct Person{
     string name;
     date data;
@@ -28,19 +29,31 @@ bool validYear(int d, int m, int y){
     default:
         if(0<d<=30){return true;}
         else{return false;}
-    break;}
+    break;}}
+
+void createDate (date &D){
+    D.m = 1 + (rand()% 12);
+    D.y = 1940+ (rand()% 74);
+    D.d = 1 + (rand()% 30);}
+
+Person criarPessoa(){
+    Person people;
+    cout<<"Write name to person: ";
+    cin>>people.name;
+    createDate(people.data);
+    while(validYear(people.data.d,people.data.m,people.data.y)==false){
+        createDate(people.data);};
+    return people;
 }
-bool createDate(Person people){
-    people.data.y= 1940+ (rand() % 74);
-    people.data.m = 1 + (rand() % 12);
-    people.data.d= 1 + (rand() % 30);
-    if(validYear(people.data.d,people.data.m, people.data.y)==true){
-        return people.data.y, people.data.m, people.data.y;
-    }return createDate(people);
+void listedPeoples(int n){
+	Person people[n];
+	for(int i=0; i<n; i++){
+		people[i]= criarPessoa();
+	}
+	for(int i=0; i<n; i++){
+		cout<< people[i].name<<"- "<<people[i].data.d<<"/"<<people[i].data.m<<"/"<<people[i].data.y<<"\n";
+	}	
 }
-
-
-
 int main(){
-    
+	listedPeoples(10);
 }
