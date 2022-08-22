@@ -70,6 +70,7 @@ void procedure(int carsNumber){
         for(int i=0;i<carsNumber;i++){
             if(vecCars[i].price==priceReceived && vecCars[i].color==colorReceived && vecCars[i].year==yearReceived){
                 cout<<"car avalible: \n";
+                cout<<"------Car"<<i+1<<"------";
                 cout<<"\nThe car brand:  "<<vecCars[i].brand;
                 cout<<"\nThe car color:  "<<vecCars[i].color;
                 cout<<"\nThe car year:  "<<vecCars[i].year;
