@@ -1,8 +1,9 @@
 #include <iostream>
 struct personagem{
-    int habilidade, energia, sorte,feiticos;
-    string nome;
+    int habilidade,energia,sorte,magia;
+
 };
 struct criatura{
-    int habilidade, energia;
+    int habilidade, energia,nivel;
+    string nome;
 };
