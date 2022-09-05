@@ -1,3 +1,6 @@
+#ifndef ACOES_H_INCLUDED
+#define ACOES_H_INCLUDED
+#include <fstream>
 #include <time.h>
 #include "criaturas.h"
 #include "falas.h"
@@ -24,22 +27,22 @@ int ataquePersonagem(personagem person){
     return dano;
 }
 
-//Simular a luta 
+//Simular a luta
 void lutar(personagem person, criatura monstro, bool fuga=true){
     int danoRecebido=0, danoCausado=0, number,escolhaAtaque,escolhaMagia;
-    bool fugir=false;   
+    bool fugir=false;
     while(person.energia>0 || monstro.energia>0 || fugir ==false){
-    
+
     //Fugir
     if(fuga==true && (danoCausado>danoRecebido-3) || fuga==true && person.energia==4){
 
-        cout<<"A situacao nao parece favoravel! Porem voce ainda tem forcas para fungir!\n Digite:\n 0-Para fugir \n 1-Para continuar a luta: "
+        cout<<"A situacao nao parece favoravel! Porem voce ainda tem forcas para fungir!\n Digite:\n 0-Para fugir \n 1-Para continuar a luta: ";
         cin>>number;
         if(number==0){
             fugir==true;
             person.energia-=2;
             }
-    } 
+    }
     //Menu Luta
     cout<<"1)Dar ataque basico\n2)Lancar Magia";
     cin>>escolhaAtaque;
@@ -65,8 +68,8 @@ void lutar(personagem person, criatura monstro, bool fuga=true){
         cout<<"1)Copia de Criatura: Faz uma copia da criatura, para que ela lute por voce\n2)Fogo: Faz criaturas de nivel 1 e 2  correrem\n3)Energia: Recupera energia em quantidade aleatoria\n";
         cin>>escolhaMagia;
         switch(escolhaMagia) {
-            case 1:  
-            if(monstro.nivel>2){ 
+            case 1:
+            if(monstro.nivel>2){
                 cout<<"Nao e possivel fazer uma copia de uma criatura tao poderosa";
                 system("pause");
             }else{
@@ -96,8 +99,42 @@ void lutar(personagem person, criatura monstro, bool fuga=true){
 }
 
 int tryLuck(personagem &person){
-    int luckLevel=dado(6)+person.sorte;  
-    return luckLevel;  
+    int luckLevel=dado(6)+person.sorte;
+    return luckLevel;
     person.sorte-=1;
 }
+//ler Arquivo
 
+string lerFala(string comeco,string fim,char* link){
+    ifstream leitura;
+    leitura.open(link);
+    string palavra,frase;
+    while(leitura.eof()==false){
+        leitura>>palavra;
+        if(palavra==comeco){
+            if(palavra==fim){
+                    getline(leitura,frase);
+            }
+        }
+        leitura.close();
+        return frase;
+        }
+}
+//fazer fluxo das histórias
+
+//menu da batalha
+void statusPersonagem(personagem person){
+    cout<<"---------Você---------\n";
+    cout<<"Vida: "<<person.energia<<"\n";
+    cout<<"Forca: "<<person.habilidade<<"\n";
+    cout<<"Fichas de Magia: "<<person.magia<<"\n";
+}
+void statusBatalha(personagem person, criatura monstro){
+    string nomeMonstro=criaturaNome(monstro);
+    cout<<"---------Você---------     ---------"<<nomeMonstro<<"---------\n";
+    cout<<"Vida: "<<person.energia<<"     Vida: "<<monstro.energia<<"\n";
+    cout<<"Forca "<<person.habilidade<<"     Forca: "<<monstro.habilidade<<"\n";
+    cout<<"Fichas de Magia: "<<person.magia;
+}
+
+#endif // ACOES_H_INCLUDED

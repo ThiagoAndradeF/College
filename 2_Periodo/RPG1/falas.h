@@ -1,24 +1,29 @@
+#ifndef FALAS_H_INCLUDED
+#define FALAS_H_INCLUDED
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
 #include <time.h>
+using namespace std;
 int tecla;
 //Falas de combate
 void hurtMonster(){
     int randomNumber;
+    srand(time(NULL));
     randomNumber = rand() % 5;
     switch(randomNumber){
-        case 0:cout<<"Você ataca o monstro e feri a criatura";break;
-        case 1:cout<<"O monstro tenta desviar porém a sua determinação é mais forte";break;
-        case 2:cout<<"AAAARG... O monstro aguniza de dor após o seu poderoso ataque";break;
-        case 3:cout<<"Sem piedade você acerta um dano no monstro";break;
-        case 4:cout<<"O monstro tenta defender, porém o seu ataque corta a defesa e causa dano ao monstro";break;
+        case 0:cout<<"Voce ataca o monstro e feri a criatura";break;
+        case 1:cout<<"O monstro tenta desviar porem a sua determinacao e mais forte";break;
+        case 2:cout<<"AAAARG... O monstro aguniza de dor apos o seu poderoso ataque";break;
+        case 3:cout<<"Sem piedade voce acerta um dano no monstro";break;
+        case 4:cout<<"O monstro tenta defender, porem o seu ataque corta a defesa e causa dano ao monstro";break;
     }
     system("pause");
     system("cls");
 }
 void getHurt(){
     int randomNumber;
+    srand(time(NULL));
     randomNumber = rand() % 5;
     switch(randomNumber){
         case 0:cout<<"Você ataca o monstro, porém ele o ataca de forma implacável e te causa danos";break;
@@ -32,18 +37,20 @@ void getHurt(){
 }
 void equalDamage(){
     int randomNumber;
+    srand(time(NULL));
     randomNumber = rand() % 3;
     switch(randomNumber){
         case 0:cout<<"O monstro lhe ataca mais rapidamente, porém , você consegue se defender";break;
         case 1:cout<<"Ambos se atacam, porém a força de ambos os golpes é muito equivalente, e com isso ninguém sofre dano";break;
         case 2:cout<<"Você ataca a criatura, porém a defesa dela é intransigível  ";break;
-    }   
+    }
     system("pause");
     system("cls");
 }
 
 void death(){
     int randomNumber;
+    srand(time(NULL));
     randomNumber = rand() % 5;
     switch(randomNumber){
         case 0:cout<<"Você tenta resistir à escuridão porém ela pe mais forte que a sua determinação";break;
@@ -84,11 +91,12 @@ void death(){
                     // return 0; /// Fecha o jogo
                     // break;
                 }
-      } 
+      }
     }
 }
 void victory(){
     int randomNumber;
+    srand(time(NULL));
     randomNumber = rand() % 5;
     switch(randomNumber){
         case 0:cout<<"A fera tenta resistir ao seu golpe, porém o seu poder e determinação são implacáveis";break;
@@ -101,16 +109,5 @@ void victory(){
     }
 }
 
-//menu da batalha
-void callBatle(personagem person, criatura montro){
-    cout<<"---------Você---------"<<                          "---------"<<monstro.nome;
-    cout<<"Vida: "<<person.energia<<"                          Vida:";
-    cout<<"Força: "<<person.habilidade<<"   ";
-    cout<<"Fichas de Magia: "<<person.magia<<"";
-}
-void callBatle(personagem person){
-    cout<<"---------Você---------";
-    cout<<"Vida: "<<person.energia;
-    cout<<"Força: "<<person.habilidade;
-    cout<<"Fichas de Magia: "<<person.magia;
-}
+
+#endif // FALAS_H_INCLUDED
