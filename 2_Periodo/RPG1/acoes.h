@@ -5,6 +5,40 @@
 #include "criaturas.h"
 #include "falas.h"
 #include <iostream>
+//Criaturas 
+struct personagem{
+    int habilidade,energia,sorte,magia;
+    string nome;
+
+};
+struct criatura{
+    int habilidade, energia,nivel, nivel, id;
+};
+
+criatura hobgoblin{
+    hobgoblin.habilidade=7,
+    hobgoblin.energia=10,
+    hobgoblin.nivel= 1};
+
+criatura fazendeiro{
+    fazendeiro.habilidade=8,
+    fazendeiro.energia=13,
+    fazendeiro.nivel= 1};
+
+criatura centopeiaGigante{
+    centopeiaGigante.habilidade=12,
+    centopeiaGigante.energia=20,
+    centopeiaGigante.nivel=2};
+
+
+
+//
+
+
+
+
+
+
 int dado(int lados){
     srand(time(NULL));
     int number=rand()%lados;
@@ -26,13 +60,27 @@ int ataquePersonagem(personagem person){
     int dano= dado(6) + dado(6)+ person.habilidade;
     return dano;
 }
+//menu da batalha
+void statusPersonagem(personagem person){
+    cout<<"---------Você---------\n";
+    cout<<"Vida: "<<person.energia<<"\n";
+    cout<<"Forca: "<<person.habilidade<<"\n";
+    cout<<"Fichas de Magia: "<<person.magia<<"\n";
+}
+void statusBatalha(personagem person, criatura monstro){
+    string nomeMonstro=criaturaNome(monstro);
+    cout<<"---------Você---------     ---------"<<nomeMonstro<<"---------\n";
+    cout<<"Vida: "<<person.energia<<"     Vida: "<<monstro.energia<<"\n";
+    cout<<"Forca "<<person.habilidade<<"     Forca: "<<monstro.habilidade<<"\n";
+    cout<<"Fichas de Magia: "<<person.magia;
+}
 
 //Simular a luta
 void lutar(personagem person, criatura monstro, bool fuga=true){
     int danoRecebido=0, danoCausado=0, number,escolhaAtaque,escolhaMagia;
     bool fugir=false;
-    while(person.energia>0 || monstro.energia>0 || fugir ==false){
-
+    while(person.energia>0 && monstro.energia>0 && fugir ==false){
+        statusBatalha(person,monstro);
     //Fugir
     if(fuga==true && (danoCausado>danoRecebido-3) || fuga==true && person.energia==4){
 
@@ -97,44 +145,36 @@ void lutar(personagem person, criatura monstro, bool fuga=true){
     if(person.energia<1){death();}else if(monstro.energia<1){victory();}
 
 }
-
+void get_line(string tag, int linhas=1)
+{
+	ifstream textos;
+	string texto;
+	textos.open("textos.txt");
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+	do{
+		textos >> texto;
+	} while(texto != tag);
+	for (int i = 0; i <= linhas; i++)
+	{
+		getline(textos, texto);
+		cout << texto << endl;
+    }
+    setlocale(LC_ALL, "Portuguese");
+	textos.close();
+}
 int tryLuck(personagem &person){
     int luckLevel=dado(6)+person.sorte;
     return luckLevel;
     person.sorte-=1;
 }
-//ler Arquivo
 
-string lerFala(string comeco,string fim,char* link){
-    ifstream leitura;
-    leitura.open(link);
-    string palavra,frase;
-    while(leitura.eof()==false){
-        leitura>>palavra;
-        if(palavra==comeco){
-            if(palavra==fim){
-                    getline(leitura,frase);
-            }
-        }
-        leitura.close();
-        return frase;
-        }
-}
+#endif // CRIATURAS_H_INCLUDED
+
+
+
+
+
 //fazer fluxo das histórias
 
-//menu da batalha
-void statusPersonagem(personagem person){
-    cout<<"---------Você---------\n";
-    cout<<"Vida: "<<person.energia<<"\n";
-    cout<<"Forca: "<<person.habilidade<<"\n";
-    cout<<"Fichas de Magia: "<<person.magia<<"\n";
-}
-void statusBatalha(personagem person, criatura monstro){
-    string nomeMonstro=criaturaNome(monstro);
-    cout<<"---------Você---------     ---------"<<nomeMonstro<<"---------\n";
-    cout<<"Vida: "<<person.energia<<"     Vida: "<<monstro.energia<<"\n";
-    cout<<"Forca "<<person.habilidade<<"     Forca: "<<monstro.habilidade<<"\n";
-    cout<<"Fichas de Magia: "<<person.magia;
-}
 
 #endif // ACOES_H_INCLUDED

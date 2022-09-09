@@ -569,7 +569,7 @@ personagem criarPersonagem(){
     personagem person;
     srand(time(NULL));
     person.habilidade=dado(6)+7;
-    person.energia=dado(6)+5;
+    person.energia=dado(6)+13;
     person.sorte=dado(6)+7;
     person.magia=1;
     return person;
@@ -608,6 +608,7 @@ void statusBatalha(personagem person, criatura monstro,string nomeMonstro){
 
 void lutar(personagem &person, criatura &monstro, string nomeMonstro, bool &jogando){
     int danoRecebido=0, danoCausado=0, number,escolhaAtaque,escolhaMagia;
+    bool fugir=false;
     while(person.energia>0 && monstro.energia>0){
         statusBatalha(person,monstro, nomeMonstro);
     //Menu Luta
@@ -641,7 +642,7 @@ void lutar(personagem &person, criatura &monstro, string nomeMonstro, bool &joga
     }
     //Magia mecanica
     else if(escolhaAtaque==2){
-      if(person.magia>=1){
+      if(person.magia>1){
         person.magia-=1;
         cout<<"1)Copia de Criatura: Faz uma copia da criatura, para que ela lute por voce\n2)Fogo: Faz criaturas de nivel 1 e 2  correrem\n3)Energia: Recupera energia em quantidade aleatoria\n";
         cin>>escolhaMagia;
@@ -739,7 +740,7 @@ void lutaBandido(personagem you,bool &jogando){
 }
 int main()
 {
-    system("cls");
+
 
 
     char escolha1,escolha2,escolha3,escolha4,escolha5,escolha6;
@@ -797,6 +798,7 @@ int main()
                     lutaBandido(you,jogando);
                     if(jogando == true){
 
+                        falaN7("N7",4);
 
                         cout << " \n\n\n\n\n\n\n                           Voce continuou o seu caminho apos a luta com o bandido...\n\n\n\n";
                         system("pause");
@@ -812,7 +814,6 @@ int main()
                         if(escolha5 == 'A' || escolha5 == 'a')
                         {
                             cout << " \n\n\n\n\n\n\n                     voce ajudou os fazendeiros e sua recompensa foi um acaraje (aumenta 4+ energia)\n\n\n\n";
-                            you.energia+=4;
                             system("pause");
                             system("cls");
 
@@ -820,29 +821,12 @@ int main()
                             falaN13("N13",2);
 
                             lutaCentopeia(you,jogando);
-                            if(jogando == true)
-                            {
-                                cout << "\n\n\n\n\n\n\n                     Apos a longa batalha, voce... A - acampa | C - continua a caminhar ";
-                            cin >> escolha6;
-
-                            if(escolha6 == 'A' || escolha6 == 'a')
-                            {
-                                system("cls");
-                                falaN14("N14",4);
-                            }
-                            else if (escolha6 == 'C' || escolha6 == 'c')
-                            {
-                                system("cls");
-                                falaN15("N15",3);
-                            }
-                            }
 
 
                         }
                         else if(escolha5 == 'R' || escolha5 == 'r')
                         {
                             cout << " \n\n\n\n\n\n\n                       Voce saqueia os fazendeiros e rouba 300 de ouro (diminui 3- energia)\n\n\n\n";
-                            you.energia-=3;
                             system("pause");
                             system("cls");
 
@@ -850,7 +834,6 @@ int main()
                             falaN13("N13",2);
 
                             lutaCentopeia(you,jogando);
-                            if(jogando == true){
 
                             cout << "\n\n\n\n\n\n\n                     Apos a longa batalha, voce... A - acampa | C - continua a caminhar ";
                             cin >> escolha6;
@@ -866,127 +849,100 @@ int main()
                                 falaN15("N15",3);
                             }
 
-
-
-
                         }
-                        }
-                    }
-
-                }
-                else if(escolha4 == 'A' || escolha4 == 'a')
-                {
-                    system("cls");
-                    cout << "\n\n\n\n\n\n\n               Voce escolheu o caminho mais curto porem mais perigoso, tera muitos encontros inesperados\n\n\n\n";
-                    system("pause");
-
-                    system("cls");
-                    cout << "\n\n\n\n\n\n\n               Ao cair da noite voce e atacado por um grupo de 4 Hobgoblins!!! A batalha e inevitavel\n\n\n\n";
-                    system("pause");
-
-                    system("cls");
-                    lutaGoblins(you,jogando);
-                    if(jogando == true){
-
-                    falaN7("N7",4);
-
-                    cout << " \n\n\n\n\n\n\n                           Voce continuou o seu caminho apos a luta com os Hobgoblins...\n\n\n\n";
-                    system("pause");
-                    system("cls");
-
-                    falaN9("N9",5);
-                    falaN10("N10",5);
-
-                    cout << " \n\n\n\n\n\n\n                                   Voce ira ajudar ou roubar os fazendeiros? A/R : ";
-                    cin >> escolha5;
-                    system("cls");
-
-                    if(escolha5 == 'A' || escolha5 == 'a')
-                    {
-                        cout << " \n\n\n\n\n\n\n                     voce ajudou os fazendeiros e sua recompensa foi um acaraje (aumenta 4+ energia)\n\n\n\n";
-                        system("pause");
-                        system("cls");
-
-                        falaN12("N12",2);
-                        falaN13("N13",2);
-
-                        lutaCentopeia(you,jogando);
-                        if(jogando == true){
-
-                        cout << "\n\n\n\n\n\n\n                     Apos a longa batalha, voce... A - acampa | C - continua a caminhar ";
-                        cin >> escolha6;
-
-                        if(escolha6 == 'A' || escolha6 == 'a')
-                        {
-                            system("cls");
-                            falaN14("N14",4);
-                        }
-                        else if (escolha6 == 'C' || escolha6 == 'c')
-                        {
-                            system("cls");
-                            falaN15("N15",3);
-                        }
-                        }
-
 
                     }
-                    else if(escolha5 == 'R' || escolha5 == 'r')
-                    {
-                        cout << " \n\n\n\n\n\n\n                       Voce saqueia os fazendeiros e rouba 300 de ouro (diminui 3- energia)\n\n\n\n";
-                        system("pause");
-                        system("cls");
+                // }
+                // else if(escolha4 == 'A' || escolha4 == 'a')
+                // {
+                //     system("cls");
+                //     cout << "\n\n\n\n\n\n\n               Voce escolheu o caminho mais curto porem mais perigoso, tera muitos encontros inesperados\n\n\n\n";
+                //     system("pause");
 
-                        falaN12("N12",2);
-                        falaN13("N13",2);
+                //     system("cls");
+                //     cout << "\n\n\n\n\n\n\n               Ao cair da noite voce e atacado por um grupo de 4 Hobgoblins!!! A batalha e inevitavel\n\n\n\n";
+                //     system("pause");
 
-                        lutaCentopeia(you,jogando);
-                        if(jogando == true){
+                //     system("cls");
+                //     lutaGoblins(you,jogando);
 
-                        cout << "\n\n\n\n\n\n\n                     Apos a longa batalha, voce... A - acampa | C - continua a caminhar ";
-                        cin >> escolha6;
+                //     falaN7("N7",4);
 
-                        if(escolha6 == 'A' || escolha6 == 'a')
-                        {
-                            system("cls");
-                            falaN14("N14",4);
-                        }
-                        else if (escolha6 == 'C' || escolha6 == 'c')
-                        {
-                            system("cls");
-                            falaN15("N15",3);
-                        }
-                        }
+                //     cout << " \n\n\n\n\n\n\n                           Voce continuou o seu caminho apos a luta com os Hobgoblins...\n\n\n\n";
+                //     system("pause");
+                //     system("cls");
+
+                //     falaN9("N9",5);
+                //     falaN10("N10",5);
+
+                //     cout << " \n\n\n\n\n\n\n                                   Voce ira ajudar ou roubar os fazendeiros? A/R : ";
+                //     cin >> escolha5;
+                //     system("cls");
+
+                //     if(escolha5 == 'A' || escolha5 == 'a')
+                //     {
+                //         cout << " \n\n\n\n\n\n\n                     voce ajudou os fazendeiros e sua recompensa foi um acaraje (aumenta 4+ energia)\n\n\n\n";
+                //         system("pause");
+                //         system("cls");
+
+                //         falaN12("N12",2);
+                //         falaN13("N13",2);
+
+                //         lutaCentopeia(you,jogando);
+
+
+                //     }
+                //     else if(escolha5 == 'R' || escolha5 == 'r')
+                //     {
+                //         cout << " \n\n\n\n\n\n\n                       Voce saqueia os fazendeiros e rouba 300 de ouro (diminui 3- energia)\n\n\n\n";
+                //         system("pause");
+                //         system("cls");
+
+                //         falaN12("N12",2);
+                //         falaN13("N13",2);
+
+                //         lutaCentopeia(you,jogando);
+
+                //         cout << "\n\n\n\n\n\n\n                     Apos a longa batalha, voce... A - acampa | C - continua a caminhar ";
+                //         cin >> escolha6;
+
+                //         if(escolha6 == 'A' || escolha6 == 'a')
+                //         {
+                //             system("cls");
+                //             falaN14("N14",4);
+                //         }
+                //         else if (escolha6 == 'C' || escolha6 == 'c')
+                //         {
+                //             system("cls");
+                //             falaN15("N15",3);
+                //         }
 
 
 
-                    }
-                }
 
-                }
-            }
-            else if(escolha3 == 'N' || escolha3 == 'n')
-            {
-                system("cls");
-                cout << "\n\n\n\n\n\n\n        voce nao tem coragem, mas nao tem problema, tenho um trabalho de cuidar de filhotes para voce kkkkk\n\n\n\n";
-                jogando = false;
-            }
+    //                 }
+    //             }
 
-        }
-        else if(escolha2 == 'N' || escolha2 == 'n')
-        {
-            system("cls");
-            falaM2("M2",2);
-            jogando = false;
-        }
-    }
-    else if(escolha1 == 'N' || escolha1 == 'n')
-    {
-        system("cls");
-        falaN5("N5",4);
-        jogando = false;
+
+    //         }
+
+    //     }
+    //     else if(escolha2 == 'N' || escolha2 == 'n')
+    //     {
+    //         system("cls");
+    //         falaM2("M2",2);
+    //     }
+    // }
+    // else if(escolha1 == 'N' || escolha1 == 'n')
+    // {
+    //     system("cls");
+    //     falaN5("N5",4);
+    // }
+
+
     }
     while (jogando==false)
-            {
+           		{
            		    cout << " " << endl;
             cout << "                  ########  ########  ##     ##  ########        #####   #           #  ########  ######" << endl;
             cout << "                  #         #      #  # #   # #  #              #     #   #         #   #         #     #" << endl;
@@ -999,28 +955,23 @@ int main()
             cout << "\n                                             Pressione [ESPACO] para reiniciar";
             cout << "\n                                             Pressione [ENTER] 2 vezes para sair\n";
             system("pause");
-            int tecla;
-            while (true)
-            {
-                if (kbhit())
-                {                    /// verifica se uma tecla foi pressionada
-                    tecla = getch(); // verifica comando do jogador
-                }
+        		int tecla;
+               	if (kbhit())
+               {                    /// verifica se uma tecla foi pressionada
+                   tecla = getch(); // verifica comando do jogador
+               }
 
-                if (tecla == ' ')
-                {
-                    main(); /// Reinicia o Jogo
-                    return jogando =true;
-                    break;
-                }
-                if (tecla == 13)
-                {
+               if (tecla == ' ')
+               {
+                   main(); /// Reinicia o Jogo
+                   return jogando =true;
+                   break;
+               }
+               if (tecla == 13)
+               {
 
-                    return 0; /// Fecha o jogo
-                    break;
-                }
-            }
-
-    }
-}
+                   return 0; /// Fecha o jogo
+                   break;
+               }
+         };
 }
