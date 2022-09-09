@@ -2,8 +2,11 @@
 #define CRIATURAS_H_INCLUDED
 
 #include <iostream>
+using namespace std;
+
 struct personagem{
     int habilidade,energia,sorte,magia;
+    string nome;
 
 };
 struct criatura{
