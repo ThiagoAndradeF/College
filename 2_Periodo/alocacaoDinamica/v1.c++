@@ -1,64 +1,20 @@
-// Escreva um programa em  C++ que pede ao usuário para digitar o tamanho e os valores de dois vetores. Considerando que o usuário não irá digitar valores repetidos, ambos os vetores deverão ser ordenados em ordem crescente. O programa deve gerar um terceiro vetor, que será composto pela intercalação  (não  ordenação)  dos  vetores  anteriores,  também  de  maneira  crescente.  Observe  o exemplo abaixo, considerando que o usuário tenha digitado que o vetor terá tamanho 5.
-#include <iostream>
+#include  "biblioMatriz.h"
+using namespace std;
 
 using namespace std;
 
-bool primo (int n){
-    if (n<=1){
-        return false;
-    }
-    for(int i=2;i<n/2+1;i++){
-        if(n%i==0){
-            return false;
-        }
-    }
-    return true;
-
-
-}
-
-void preenche_vetor(int *v, int t) {
-    for (int i=0; i<t; i++){
-        cout<<"Informe v["<<i<<"]: ";
+void gerarVetor(int *v,int t){
+   for(int i=0; i<t; i++){
+        cout<<"Digite o valor de v["<<i<<"] ";
         cin>>v[i];
+   }
+}
+void imprimirVetor(int *v, int t){
+    for(int i=0;i<t;i++){
+     cout<<"\n v["<<i<<"]= "<<v[i];
     }
 }
-
-void imprime_vetor(int *v, int t) {
-    for (int i=0; i<t; i++){
-        cout<<"v["<<i<<"]: "<<v[i]<<"\n";
-    }
-}
-
-
-void alterna(int *v1, int *v2, int *v3, int t) {
-    for (int i=0; i<t; i++){
-        v3[2*i]=v1[i];
-        v3[2*i+1]=v2[i];
-    }
-
-}
-
-
-int soma_vetor (int* v, int t) {
-    int soma=0;
-    for (int i=0; i<t; i++){
-        soma=soma+v[i];
-    }
-
-    return soma;
-}
-
-bool simetrico (int* v, int t) {
-    for (int i=0; i<t/2; i++){
-        if (v[i]!=v[t-1-i]){
-            return false;
-        }
-    }
-    return true;
-}
-
-void bolha (int* v, int t){
+void ordenarVetor(int* v, int t){
     int temp;
     for (int i=0;i<t;i++){
         for (int j=0;j<t-1;j++){
@@ -71,119 +27,41 @@ void bolha (int* v, int t){
     }
 }
 
-void bolha_inversa (int* v, int t){
-    int temp;
-    for (int i=0;i<t;i++){
-        for (int j=0;j<t-1;j++){
-            if(v[j]<v[j+1]){
-                temp=v[j];
-                v[j]=v[j+1];
-                v[j+1]=temp;
-            }
-        }
-    }
-}
 
-void questao1 (){
-    int t;
-    cout<<"Informe o tamanho dos vetores: ";
-    cin>>t;
-
+void ex1(){
+    int t1, t2;
     int *v1, *v2, *v3;
-    v1 = new int[t];
-    v2 = new int[t];
-    v3 = new int[t+t];
+    v1 = new int[t1];
+    v2 = new int[t2];
+    v3 = new int [t1+t2];
+    //escrevendo primeiro vetor
+    cout<<"Write the vector one size: ";
+    cin>>t1;
+    gerarVetor(v1, t1);
+    //escrevendo segundo vetor
+    cout<<"Write the vector two size: ";
+    cin>>t2;
+    gerarVetor(v2, t2);
 
-    preenche_vetor(v1, t);
-    bolha(v1, t);
-    preenche_vetor(v2, t);
-    bolha(v2, t);
-    alterna(v1,v2,v3,t);
-    imprime_vetor(v3, 2*t);
+    //escrevendo terceiro vetor
+    int t3=t1+t2;
+    for(int i=0;i<t1;i++){
+        v3[i]=v1[i];
+    }
+
+    for(int i=0;i<t2;i++){
+        v3[t1+i]=v2[i];
+    }
+
+    ordenarVetor(v3,t3);
+    imprimirVetor(v3,t3);
 
     delete []v1;
     delete []v2;
     delete []v3;
 }
 
-void questao2(){
-    int t=0, tp=0, tn=0, n, sp, sn;
-    int *vp, *vn;
-    cout<<"Informe o numero de valores: ";
-    cin>>t;
-    vp = new int[t];
-    vn = new int[t];
-    for (int i=0; i<t; i++){
-        cout<<"informe um numero: ";
-        cin>>n;
-        if (primo(n)){
-            vp[tp]=n;
-            tp++;
-        } else {
-            vn[tn]=n;
-            tn++;
-        }
-    }
+int main{
+    ex1();
 
-    sp=soma_vetor(vp, tp);
-    sn=soma_vetor(vn, tn);
-
-    if(sp>sn){
-        imprime_vetor(vp, tp);
-    } else if (sn>sp){
-        imprime_vetor(vn, tn);
-    } else {
-        imprime_vetor(vp, tp);
-        imprime_vetor(vn, tn);
-    }
-
-    delete []vp;
-    delete []vn;
-}
-
-void questao3(){
-    int t;
-    int *v;
-    cout<<"Informe o tamanho do vetor: ";
-    cin>>t;
-    v = new int[t];
-    preenche_vetor(v, t);
-    if(simetrico(v,t)){
-        cout<<"vetor simetrico!";
-    } else {
-        cout<<"vetor nao simetrico!";
-    }
-
-    delete []v;
-}
-
-void questao4(){
-    int t, seletor;
-    int *v;
-    cout<<"Informe o tamanho do vetor: ";
-    cin>>t;
-    v = new int[t];
-    preenche_vetor(v, t);
-
-    cout<<"digite 1 para crescente e 0 para decrescente: ";
-    cin>>seletor;
-
-    if (seletor){
-        bolha(v, t);
-    } else {
-        bolha_inversa(v, t);
-    }
-    imprime_vetor(v, t);
-
-    delete []v;
-
-}
-
-int main()
-{
-    //questao1();
-    //questao2();
-    //questao3();
-    questao4();
-    return 0;
 }
