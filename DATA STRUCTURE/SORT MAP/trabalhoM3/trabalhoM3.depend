@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1719878602 source:c:\estrutura de dados\trabalho m3\trabalhom3\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+	<ctime>
+	<chrono>
+	<climits>
+	<float.h>
+	<cmath>
+
+1719878604 source:c:\users\thiago\desktop\trabalho m3\trabalhom3\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+	<ctime>
+	<chrono>
+	<climits>
+	<float.h>
+	<cmath>
+
