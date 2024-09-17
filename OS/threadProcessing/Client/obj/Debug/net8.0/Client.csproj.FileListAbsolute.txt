@@ -1,0 +1,15 @@
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\bin\Debug\net8.0\Client.exe
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\bin\Debug\net8.0\Client.deps.json
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\bin\Debug\net8.0\Client.runtimeconfig.json
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\bin\Debug\net8.0\Client.dll
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\bin\Debug\net8.0\Client.pdb
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.AssemblyInfoInputs.cache
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.AssemblyInfo.cs
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.csproj.CoreCompileInputs.cache
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.sourcelink.json
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.dll
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\refint\Client.dll
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.pdb
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\Client.genruntimeconfig.cache
+C:\Users\Thiago\Desktop\COLEGE\College\OS\threadProcessing\Client\obj\Debug\net8.0\ref\Client.dll
