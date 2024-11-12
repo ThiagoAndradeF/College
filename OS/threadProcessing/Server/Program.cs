@@ -8,7 +8,11 @@ class Server
     {
         Console.WriteLine("Servidor iniciado...");
 
-        // Cria threads para tratar dois pipes nomeados: "stringPipe" e "numberPipe"
+        // Configura o pool para permitir um número maior de threads
+        ThreadPool.SetMinThreads(20, 20); // Define o mínimo para 20 threads (ajuste conforme necessário)
+        ThreadPool.SetMaxThreads(100, 100); // Define o máximo para 100 threads (ou o número que preferir)
+
+        // Cria threads para tratar os pipes
         ThreadPool.QueueUserWorkItem(PipeHandler, "stringPipe");
         ThreadPool.QueueUserWorkItem(PipeHandler, "numberPipe");
 
@@ -16,35 +20,41 @@ class Server
     }
 
     private static void PipeHandler(object pipeName)
-{
-    string pipeType = (string)pipeName;
-
-    while (true)
     {
-        using (NamedPipeServerStream pipeServer = new NamedPipeServerStream(pipeType, PipeDirection.InOut))
+        string pipeType = (string)pipeName;
+
+        while (true)
         {
-            Console.WriteLine($"Aguardando conexão no pipe: {pipeType}...");
-            pipeServer.WaitForConnection();  // Aguarda uma conexão de um cliente
-
-            using (StreamReader reader = new StreamReader(pipeServer))
-            using (StreamWriter writer = new StreamWriter(pipeServer))
+            try
             {
-                string request = reader.ReadLine();  // Lê a requisição do cliente
-                Console.WriteLine($"Requisição recebida: {request}");
-
-                // Lida com os diferentes tipos de pipe
-                if (pipeType == "stringPipe")
+                using (NamedPipeServerStream pipeServer = new NamedPipeServerStream(pipeType, PipeDirection.InOut))
                 {
-                    writer.WriteLine($"Resposta de string: {request.ToUpper()}");
-                }
-                else if (pipeType == "numberPipe" && int.TryParse(request, out int number))
-                {
-                    writer.WriteLine($"Número ao quadrado: {number * number}");
-                }
+                    Console.WriteLine($"Aguardando conexão no pipe: {pipeType}...");
+                    pipeServer.WaitForConnection();
 
-                writer.Flush();  // Envia a resposta de volta para o cliente
+                    using (StreamReader reader = new StreamReader(pipeServer))
+                    using (StreamWriter writer = new StreamWriter(pipeServer))
+                    {
+                        string request = reader.ReadLine();
+                        Console.WriteLine($"Requisição recebida: {request}");
+
+                        if (pipeType == "stringPipe")
+                        {
+                            writer.WriteLine($"Resposta de string: {request.ToUpper()}");
+                        }
+                        else if (pipeType == "numberPipe" && int.TryParse(request, out int number))
+                        {
+                            writer.WriteLine($"Número ao quadrado: {number * number}");
+                        }
+
+                        writer.Flush();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro no pipe {pipeType}: {ex.Message}");
             }
         }
     }
-}
 }
